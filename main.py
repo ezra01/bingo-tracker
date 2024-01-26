@@ -3,7 +3,7 @@
 
 
 from os import system as sys, name, path
-from PyQt5.QtWidgets import QApplication, QWidget
+from PyQt5.QtWidgets import QApplication,QStackedWidget
 import numpy
 from PIL import Image
 import pytesseract
@@ -13,12 +13,16 @@ import cv2 as cv
 import json
 import random as rng
 from scipy import stats as st
+import view
 
 #todo fix rng seed dafuq
+
 rng.seed(12345)
 # Location of Tesseract download
 pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
 DEBUG_MODE= True
+
+
 
 def get_path(fin):
     exists = path.isfile(fin)
@@ -27,6 +31,15 @@ def get_path(fin):
     print(full_path)
     dirname, file = path.split(full_path)
     return dirname
+
+def create_app():
+    app = QApplication([])
+    WINDOW = view.MainWindow()
+    widget = QStackedWidget()
+    widget.addWidget(WINDOW)
+    widget.setMinimumSize(400,300)
+    widget.show()
+    app.exec()
 
 
 windowNames = []
@@ -319,5 +332,6 @@ if __name__ == '__main__':
         "example_bingo.jpg"
     )
     read_text(test_file)
-    lin = ['62', '47', '34', '29', '13', '67', '58', '45', '16', '3', '63', '57', '22', '15', '73', '53', '38', '20', '10', '68', '60', '35', '23', '2']
+    #create_app()
+    #lin = ['62', '47', '34', '29', '13', '67', '58', '45', '16', '3', '63', '57', '22', '15', '73', '53', '38', '20', '10', '68', '60', '35', '23', '2']
     #getWinningNumbers(lin)
