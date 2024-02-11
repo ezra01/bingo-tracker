@@ -6,12 +6,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>436</width>
-    <height>354</height>
+    <width>629</width>
+    <height>503</height>
    </rect>
   </property>
   <property name="sizePolicy">
-   <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+   <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
     <horstretch>0</horstretch>
     <verstretch>0</verstretch>
    </sizepolicy>
@@ -22,7 +22,7 @@
   <widget class="QPushButton" name="browse_button">
    <property name="geometry">
     <rect>
-     <x>160</x>
+     <x>290</x>
      <y>0</y>
      <width>75</width>
      <height>23</height>
@@ -32,23 +32,26 @@
     <string>Browse</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="filename">
+  <widget class="QLineEdit" name="filename_line">
    <property name="geometry">
     <rect>
-     <x>0</x>
+     <x>40</x>
      <y>0</y>
-     <width>161</width>
-     <height>20</height>
+     <width>251</width>
+     <height>21</height>
     </rect>
+   </property>
+   <property name="readOnly">
+    <bool>true</bool>
    </property>
   </widget>
   <widget class="QLabel" name="pic_label">
    <property name="geometry">
     <rect>
-     <x>0</x>
-     <y>30</y>
-     <width>151</width>
-     <height>101</height>
+     <x>30</x>
+     <y>50</y>
+     <width>491</width>
+     <height>401</height>
     </rect>
    </property>
    <property name="text">
@@ -56,6 +59,48 @@
    </property>
    <property name="scaledContents">
     <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="analyze_button">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>420</x>
+     <y>20</y>
+     <width>75</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Analyze</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="isDebug_btn">
+   <property name="geometry">
+    <rect>
+     <x>420</x>
+     <y>0</y>
+     <width>91</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Debug Mode</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>0</y>
+     <width>21</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>File:</string>
    </property>
   </widget>
  </widget>

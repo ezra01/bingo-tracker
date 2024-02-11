@@ -4,6 +4,7 @@
 
 from os import system as sys, name, path
 from PyQt5.QtWidgets import QApplication,QStackedWidget
+
 import numpy
 from PIL import Image
 import pytesseract
@@ -13,7 +14,6 @@ import cv2 as cv
 import json
 import random as rng
 from scipy import stats as st
-import view
 
 #todo fix rng seed dafuq
 
@@ -22,8 +22,6 @@ rng.seed(12345)
 pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
 DEBUG_MODE= True
 
-
-
 def get_path(fin):
     exists = path.isfile(fin)
 
@@ -31,15 +29,6 @@ def get_path(fin):
     print(full_path)
     dirname, file = path.split(full_path)
     return dirname
-
-def create_app():
-    app = QApplication([])
-    WINDOW = view.MainWindow()
-    widget = QStackedWidget()
-    widget.addWidget(WINDOW)
-    widget.setMinimumSize(400,300)
-    widget.show()
-    app.exec()
 
 
 windowNames = []
@@ -72,7 +61,8 @@ def gamma_correction(gamma, img_original):
 def myround(x, base = 10):
     return base * round(x/base)
 
-def read_text(fin):
+def read_text(fin, isDebug):
+    DEBUG_MODE = isDebug
     window_name = fin
             # Get Image
     img1 = cv.imread(fin)
@@ -286,6 +276,8 @@ def read_text(fin):
     return final_results
 
 def getWinningNumbers(lin):
+
+    lin.reverse()
     l=len(lin)+1
     lin.insert(l//2,-1)
     rowCounter = -1
@@ -324,6 +316,18 @@ def getWinningNumbers(lin):
         diagonal tl: 0Val + every 5+1
         diagonal tr: every 5-1 excluding 0Val and lastval
     """
+    bingoSets=[]
+    for bingoList in [rows,cols,[dia_tl,dia_tl]]:
+        for line in bingoList:
+            bingoSets.append(set(line))
+    if DEBUG_MODE:
+        print("Here are the sets of all bingo Lines \n{0}".format(bingoSets))
+    return(bingoSets)
+
+
+#def isWinner(calls):
+
+
 
 
 if __name__ == '__main__':
@@ -331,7 +335,7 @@ if __name__ == '__main__':
         #"jpg"
         "example_bingo.jpg"
     )
-    read_text(test_file)
-    #create_app()
-    #lin = ['62', '47', '34', '29', '13', '67', '58', '45', '16', '3', '63', '57', '22', '15', '73', '53', '38', '20', '10', '68', '60', '35', '23', '2']
-    #getWinningNumbers(lin)
+    #read_text(test_file)
+    lin = ['62', '47', '34', '29', '13', '67', '58', '45', '16', '3', '63', '57', '22', '15', '73', '53', '38', '20', '10', '68', '60', '35', '23', '2']
+    number_calls = ['62', '13', '67', '58', '22', '15', '20', '10', '2']
+    getWinningNumbers(lin)
