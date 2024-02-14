@@ -1,26 +1,19 @@
-
 # install numpy, pytesseract and opencv
-
 
 from os import system as sys, name, path
 from PyQt5.QtWidgets import QApplication,QStackedWidget
-
-import numpy
-from PIL import Image
-import pytesseract
-from pytesseract import Output
 import numpy as np
 import cv2 as cv
-import json
-import random as rng
 from scipy import stats as st
+import random as rng
+import numpy
+from PIL import Image
+import json
+import pytesseract
+from pytesseract import Output
 
-#todo fix rng seed dafuq
-
-rng.seed(12345)
-# Location of Tesseract download
-pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
-DEBUG_MODE= True
+import config
+from gameCard import GameCard
 
 def get_path(fin):
     exists = path.isfile(fin)
@@ -273,61 +266,12 @@ def read_text(fin, isDebug):
     """
     if DEBUG_MODE:
         print(final_results)
-    return final_results
-
-def getWinningNumbers(lin):
-
-    lin.reverse()
-    l=len(lin)+1
-    lin.insert(l//2,-1)
-    rowCounter = -1
-
-    arrSize = int(np.sqrt(l+1))
-    shape = (arrSize*2+2,arrSize)
-    arr = np.zeros(shape)
-
-    shape = (arrSize, arrSize)
-    rows= np.zeros(shape)
-    cols = np.zeros(shape)
-
-    dia_tl = []
-    dia_tr = []
-
-    # Bingo List
-    for i in range(0,l):
-        if i != l//2:
-            if i%arrSize ==0:
-                rowCounter+=1
-            rows[rowCounter][i%arrSize] = lin[i]
-            cols[i % arrSize][rowCounter] = lin[i]
-            if i%(arrSize+1)==0:
-                dia_tl.append(lin[i])
-            if i%(arrSize-1)==0 and i!=0 and i<l-1:
-                dia_tr.append(lin[i])
-    if DEBUG_MODE:
-        print("Here are the Separated rows \n{0}".format(rows))
-        print("Here are the Separated cols \n{0}".format(cols))
-        print("Here are the Separated diagonals \n{0}\n{1}".format(dia_tr,dia_tl))
-
-    """
-        Account for skipped middle value
-        rows: every 5
-        cols: every 5th
-        diagonal tl: 0Val + every 5+1
-        diagonal tr: every 5-1 excluding 0Val and lastval
-    """
-    bingoSets=[]
-    for bingoList in [rows,cols,[dia_tl,dia_tl]]:
-        for line in bingoList:
-            bingoSets.append(set(line))
-    if DEBUG_MODE:
-        print("Here are the sets of all bingo Lines \n{0}".format(bingoSets))
-    return(bingoSets)
+    myBingoCard = GameCard(fin,final_results[::-1])
+    return myBingoCard
 
 
-#def isWinner(calls):
 
-
+    #return myBingoCard
 
 
 if __name__ == '__main__':
@@ -338,4 +282,4 @@ if __name__ == '__main__':
     #read_text(test_file)
     lin = ['62', '47', '34', '29', '13', '67', '58', '45', '16', '3', '63', '57', '22', '15', '73', '53', '38', '20', '10', '68', '60', '35', '23', '2']
     number_calls = ['62', '13', '67', '58', '22', '15', '20', '10', '2']
-    getWinningNumbers(lin)
+

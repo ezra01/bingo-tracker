@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>629</width>
-    <height>503</height>
+    <width>748</width>
+    <height>582</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -19,89 +19,241 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QPushButton" name="browse_button">
+  <widget class="QTabWidget" name="tabWidget">
    <property name="geometry">
     <rect>
-     <x>290</x>
+     <x>0</x>
      <y>0</y>
-     <width>75</width>
-     <height>23</height>
+     <width>741</width>
+     <height>571</height>
     </rect>
    </property>
-   <property name="text">
-    <string>Browse</string>
+   <property name="currentIndex">
+    <number>0</number>
    </property>
-  </widget>
-  <widget class="QLineEdit" name="filename_line">
-   <property name="geometry">
-    <rect>
-     <x>40</x>
-     <y>0</y>
-     <width>251</width>
-     <height>21</height>
-    </rect>
-   </property>
-   <property name="readOnly">
-    <bool>true</bool>
-   </property>
-  </widget>
-  <widget class="QLabel" name="pic_label">
-   <property name="geometry">
-    <rect>
-     <x>30</x>
-     <y>50</y>
-     <width>491</width>
-     <height>401</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Add Bingo image first</string>
-   </property>
-   <property name="scaledContents">
-    <bool>true</bool>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="analyze_button">
-   <property name="enabled">
-    <bool>false</bool>
-   </property>
-   <property name="geometry">
-    <rect>
-     <x>420</x>
-     <y>20</y>
-     <width>75</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Analyze</string>
-   </property>
-  </widget>
-  <widget class="QCheckBox" name="isDebug_btn">
-   <property name="geometry">
-    <rect>
-     <x>420</x>
-     <y>0</y>
-     <width>91</width>
-     <height>17</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Debug Mode</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>0</y>
-     <width>21</width>
-     <height>20</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>File:</string>
-   </property>
+   <widget class="QWidget" name="tab">
+    <attribute name="title">
+     <string>Tab 1</string>
+    </attribute>
+    <widget class="QPushButton" name="browse_button">
+     <property name="geometry">
+      <rect>
+       <x>280</x>
+       <y>10</y>
+       <width>75</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Browse</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="filename_line">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>10</y>
+       <width>251</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="readOnly">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>21</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>File:</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="analyze_button">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>380</x>
+       <y>20</y>
+       <width>75</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Analyze</string>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="isDebug_btn">
+     <property name="geometry">
+      <rect>
+       <x>390</x>
+       <y>0</y>
+       <width>91</width>
+       <height>17</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Debug Mode</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="pic_label">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>60</y>
+       <width>491</width>
+       <height>401</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Add Bingo image first</string>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="tab_2">
+    <attribute name="title">
+     <string>Tab 2</string>
+    </attribute>
+    <widget class="QListWidget" name="calls_list_widget">
+     <property name="geometry">
+      <rect>
+       <x>520</x>
+       <y>60</y>
+       <width>111</width>
+       <height>471</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="line_edit_calls">
+     <property name="geometry">
+      <rect>
+       <x>530</x>
+       <y>30</y>
+       <width>113</width>
+       <height>20</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_2">
+     <property name="geometry">
+      <rect>
+       <x>536</x>
+       <y>10</y>
+       <width>101</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Input</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_3">
+     <property name="geometry">
+      <rect>
+       <x>660</x>
+       <y>10</y>
+       <width>51</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Bingo 
+Cards</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QListWidget" name="card_list_widget">
+     <property name="geometry">
+      <rect>
+       <x>650</x>
+       <y>60</y>
+       <width>81</width>
+       <height>471</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QWidget" name="gridLayoutWidget">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>60</y>
+       <width>501</width>
+       <height>471</height>
+      </rect>
+     </property>
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="0" column="0">
+       <widget class="QTableWidget" name="dial">
+        <row>
+         <property name="text">
+          <string/>
+         </property>
+        </row>
+        <row>
+         <property name="text">
+          <string/>
+         </property>
+        </row>
+        <row>
+         <property name="text">
+          <string/>
+         </property>
+        </row>
+        <row>
+         <property name="text">
+          <string/>
+         </property>
+        </row>
+        <row>
+         <property name="text">
+          <string/>
+         </property>
+        </row>
+        <column>
+         <property name="text">
+          <string>B</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>I</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>N</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>G</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>O</string>
+         </property>
+        </column>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </widget>
   </widget>
  </widget>
  <resources/>
