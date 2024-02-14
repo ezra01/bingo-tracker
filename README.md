@@ -33,18 +33,22 @@ Make sure to record the download location for changing
 ***
 ### Major TODOs:
 - ~~Bingo card OCR~~ Stabalize image preprocessing for larger variety of images
-- bingoWinner method to determine winning numbers.
-- input for game IRL announcements
+- Use isWinner method to determine winning bingo cards.
+- ~~input for game IRL announcements~~
 - checkCount of OCR Hits to determine if image preprocessing is correct (<24)
 - checkCount of bounding boxes to determine if bingo tiles count is correct ((>24))
-- implement class for multiple bingo cards
+- ~~implement class for multiple bingo cards~~
 
 ### Minor TODOs:
 - Determine if the additional language equation and math are critical
+- Create random bingo cards
+- Clear game
+- Remove accidental bingo call
+- Remove bingo card
 
 ### Future Features:
 - image viewer for image preprocessing tweaks
-- image representation of current cards in gui
+- Overlay image ~~image representation of current cards in gui~~
 - convolutional neural network for recognizing bingo cards and image preprocessing
 - binary executable and installer
 
