@@ -35,16 +35,39 @@ class MainWindow(QDialog):
         self.itemCallsList= set()
         self.tabWidget.tabBarClicked.connect(self.refresh_my_cards)
         self.card_list_widget.itemClicked.connect(self.make_visual_card)
-        self.line_edit_calls.returnPressed.connect(self.insert_calls)
-
+        self.line_edit_calls.returnPressed.connect(self.add_line_call)
+        self.rand_call_btn.clicked.connect(self.add_random_call)
+        self.rand_card_btn.clicked.connect(self.add_random_card)
         # Swap Buttons for testing
         #self.browse_button.clicked.connect(self.test_btn)
 
 
-    def insert_calls(self):
-            # updates list of calls
-        s=(self.line_edit_calls.text()).strip()
+    def add_random_card(self):
+        randomCard= GameCard("Card "+ str(len(self.myCards)+1) )
+        randomCard.randomize()
+        self.add_bingo_card(randomCard)
+        self.refresh_my_cards(1)
 
+
+    def add_random_call(self):
+        if len(self.itemCallsList)!= 75:
+            unusedCallsList = [x for x in range(1,76)]
+            unusedCallsList = list(set(unusedCallsList) - set(self.itemCallsList))
+            tempNum =config.RAND.choice(unusedCallsList)
+            while tempNum in self.itemCallsList:
+                tempNum = config.choice(unusedCallsList)
+
+            self.insert_calls(str(tempNum))
+        else:
+            #Error no more calls availble
+            #print("Tried to add random call")
+            pass
+
+    def add_line_call(self):
+        s=(self.line_edit_calls.text()).strip()
+        self.insert_calls(s)
+    def insert_calls(self,s):
+            # updates list of calls
         if s.isnumeric():
             s=int(s)
             self.line_edit_calls.clear()
@@ -63,6 +86,12 @@ class MainWindow(QDialog):
                             if int(self.currentVisualCard.item(q, p).text()) in self.itemCallsList:
                                 self.currentVisualCard.item(q, p).setBackground(QColor(0, 200, 0, 127))
                         counter += 1
+            # check for winner bingo cards
+            if len(self.itemCallsList)>=4: #arrsize
+                self.check_all_cards()
+
+
+
             else:
                 pass
         else:
@@ -106,16 +135,18 @@ class MainWindow(QDialog):
 
     def refresh_my_cards(self,tabIndex):
             #  updates list of bingo cards.
-        #newCard = GameCard("Card 1",['62', '47', '34', '29', '13', '67', '58', '45', '16', '3', '63', '57', '22', '15', '73', '53', '38', '20', '10', '68', '60', '35', '23', '2'])
-        #self.myCards.append(newCard)
-        #sample card ^^
+            # Will update on change of tab
         if tabIndex ==1:
             self.card_list_widget.clear()
             for k, v in enumerate (self.myCards):
                 tempItem = QListWidgetItem()
                 tempItem.setText(str(k+1)+" . "+v.getImgPath())
                 tempItem.setData(config.CustomObjectRole,v)
+                #check all cards for winners
+                if v.isWinner(self.itemCallsList):
+                    tempItem.setBackground(QColor(0, 200, 0, 127))
                 self.card_list_widget.addItem(tempItem )
+
 
 
     def gui_browse_files(self):
@@ -145,9 +176,34 @@ class MainWindow(QDialog):
         self.thread.finished.connect(lambda: self.analyze_button.setEnabled(True))
 
 
+    def check_this_card(self,myCard):
+        if isinstance(myCard,GameCard):
+            if myCard.isWinner(self.itemCallsList):
+                self.this_card_won(myCard)
+        else:
+            #error not a game card
+            pass
+
+
+    def check_all_cards(self):
+        for x in self.myCards:
+            self.check_this_card(x)
+
+
+
+    def this_card_won(self, winningCard):
+        winnerList = self.card_list_widget.findItems(winningCard.getImgPath(),Qt.MatchEndsWith)
+        for x in winnerList:
+            x.setBackground(QColor(0, 200, 0, 127))
+
+
+
+
     def add_bingo_card(self,bingoCard):
         if  isinstance(bingoCard,GameCard):
             self.myCards.append(bingoCard)
+        else:
+            pass
 
 
     def test_btn(self):
@@ -165,7 +221,6 @@ class Worker(QObject):
         self.filename = filename_line
         self.isDebug = isDebug
 
-
     def run(self):
         "Task"
         try:
@@ -181,6 +236,8 @@ class Worker(QObject):
 
 
 
+
+# Run this file to use application.
 if __name__ == '__main__':
     app = QApplication([])
     WINDOW = MainWindow()

@@ -5,7 +5,6 @@ from PyQt5.QtWidgets import QApplication,QStackedWidget
 import numpy as np
 import cv2 as cv
 from scipy import stats as st
-import random as rng
 import numpy
 from PIL import Image
 import json
@@ -181,7 +180,7 @@ def read_text(fin, isDebug):
     if DEBUG_MODE:
         print("---BOUNDING BOX Locations---\n")
         for i in range(len(boundRect2)):
-            color = (rng.randint(0, 256), rng.randint(0, 256), rng.randint(0, 256))
+            color = (config.RAND.randint(0, 256), config.RAND.randint(0, 256), config.RAND.randint(0, 256))
             cv.rectangle(img_copy,  (int(boundRect2[i][0]), int(boundRect2[i][1])), (int(boundRect2[i][0]+boundRect2[i][2]), int(boundRect2[i][1]+boundRect2[i][3])), color, 2)
             if DEBUG_MODE:
                 try:
@@ -279,7 +278,7 @@ if __name__ == '__main__':
         #"jpg"
         "example_bingo.jpg"
     )
-    #read_text(test_file)
+    read_text(test_file,config.DEBUG_MODE)
     lin = ['62', '47', '34', '29', '13', '67', '58', '45', '16', '3', '63', '57', '22', '15', '73', '53', '38', '20', '10', '68', '60', '35', '23', '2']
     number_calls = ['62', '13', '67', '58', '22', '15', '20', '10', '2']
 
