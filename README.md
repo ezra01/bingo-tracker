@@ -2,7 +2,7 @@
 ***
 #### Objective
 Reads a picture of a bingo card and converts it to a digital representation. With input from user for game 
-anouncements the app will process winning 'Bingos'. 
+announcements the app will process winning 'Bingos'. 
 
  With many bingo cards this can reduce lag time and user errors in the game, while the major advantage comes with scalability. Digitizing bingo cards allows for a drastic increase in # of Bingo cards played by one person.
 
@@ -27,7 +27,11 @@ To download the most updated version of tesseract for windows go to I downloaded
 
 Make sure to record the download location for changing 
 > pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
-
+> 
+### Project In use:
+![alt text](https://github.com/ezra01/bingo-tracker/blob/master/Images/Analyze.JPG "Sample Bingo card")
+![alt text](https://github.com/ezra01/bingo-tracker/blob/master/Images/Result.JPG "Digitized representation of sample bingo card")
+![alt text](https://github.com/ezra01/bingo-tracker/blob/master/Images/Winner.JPG "Winning bingo card")
 
 ## ToDos
 ***
